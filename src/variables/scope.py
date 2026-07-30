@@ -1,19 +1,18 @@
 import ast
 
-class ModuleVisitor(ast.NodeTransformer):
+class ScopeVisitor(ast.NodeVisitor):
     def __init__(self):
-        self.current_module = None
+        self.scope = {}
+        self.depth = 0
+
+    def visit_FunctionDef(self, node):
+        print(True)
+        self.generic_visit(node)
 
     def visit_Module(self, node):
-        visitor = VariableVisitor()
-        tree = visitor.visit(node)
-        return tree
+        print(True)
+        self.generic_visit(node)
 
-class VariableVisitor(ast.NodeTransformer):
-    def visit_Name(self, node):
-        if isinstance(node.ctx, ast.Store):
-            print("STORE")
-        elif isinstance(node.ctx, ast.Store):
-            pass
-
-        return self.generic_visit(node)
+    def visit_ClassDef(self, node):
+        print(True)
+        self.generic_visit(node)

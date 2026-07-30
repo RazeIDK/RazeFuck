@@ -1,8 +1,5 @@
-from .scope import ModuleVisitor
-from .cipher import xor_cipher, source_xor
+from .scope import ScopeVisitor
 
 __all__ = [
-	"ModuleVisitor",
-	"xor_cipher",
-	"source_xor"
+	"ScopeVisitor"
 	]

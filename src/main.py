@@ -12,7 +12,7 @@ def main():
 
 	tree = ast.parse(lines)
 
-	visitor = variables.ModuleVisitor()
+	visitor = variables.ScopeVisitor()
 	visitor.visit(tree)
 
 	print(ast.dump(tree, indent=2))
