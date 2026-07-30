@@ -1,4 +1,5 @@
 import ast
+import copy
 
 
 class ScopeVisitor(ast.NodeVisitor):
@@ -10,16 +11,15 @@ class ScopeVisitor(ast.NodeVisitor):
         if not self.scope.get(self.depth, False):
             self.scope[self.depth] = []
 
-        cleaned_node = update_node.copy()
+        cleaned_node = copy.deepcopy(update_node)
 
-        for i in update_node.body:
-            if isinstance(i, (
-                ast.FunctionDef,
-                ast.Module,
-                ast.ClassDef
-                )):
-                cleaned_node.remove(i)
-        self.scope[self.depth].append(update_node)
+        if hasattr(cleaned_node, "body"):
+            cleaned_node.body = [
+                child for child in cleaned_node.body
+                if not isinstance(child, (ast.FunctionDef, ast.ClassDef, ast.Module))
+            ]
+
+        self.scope[self.depth].append(cleaned_node)
 
     def get_scope(self):
         return self.scope
