@@ -12,11 +12,12 @@ def main():
 
 	tree = ast.parse(lines)
 
-	visitor = variables.ScopeVisitor()
-	visitor.visit(tree)
+	visitor = variables.RenameTransformer()
+	g = visitor.visit(tree)
 
 	print(ast.dump(tree, indent=2))
-	print(visitor.get_scope())
+	print(f"\n\n{'=' * 20}\n\n")
+	print(ast.dump(g, indent=2))
 
 
 if __name__ == "__main__":
