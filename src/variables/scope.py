@@ -1,18 +1,21 @@
 import ast
 
+scope = {}
+depth = 0
+
 class ScopeVisitor(ast.NodeVisitor):
-    def __init__(self):
-        self.scope = {}
-        self.depth = 0
+    def update_scope_node(self, update_node):
+        global scope, depth
+        if not scope.get(depth, False):
+            scope[depth] = []
+
+        scope[depth] = update_node
 
     def visit_FunctionDef(self, node):
-        print(True)
-        self.generic_visit(node)
+        
 
     def visit_Module(self, node):
-        print(True)
-        self.generic_visit(node)
+        pass
 
     def visit_ClassDef(self, node):
-        print(True)
-        self.generic_visit(node)
+        pass
