@@ -1,1 +1,2 @@
-asd = "Penis"
+asd = "mmm"
+print(asd)
