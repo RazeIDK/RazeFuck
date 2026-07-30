@@ -16,6 +16,7 @@ def main():
 	visitor.visit(tree)
 
 	print(ast.dump(tree, indent=2))
+	print(visitor.get_scope())
 
 
 if __name__ == "__main__":
