@@ -3,8 +3,9 @@ import random
 
 
 def generate_word():
+	ru_symbol = "О"
 	en_symbol = "O"
-	symbols = ['O', 'О', 'Ο', 'Օ', 'ᴏ', 'ⵔ', 'Ꝏ']
+	symbols = ru_symbol + en_symbol
 	
 	gen = []
 	for i in range(14):
